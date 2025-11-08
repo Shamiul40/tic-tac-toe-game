@@ -1,37 +1,49 @@
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 
-function Square({value}) {
+
+function Square({value, onSquareChange}) {
+
+
+ 
   return (
-    <button className="bg-white border border-gray-400 h-12 w-12 m-1 leading-9 text-lg">{value}</button>
-  )
-}
-
+    <button
+      className="bg-white border border-gray-400 h-12 w-12 m-1 leading-9 text-lg"
+      onClick={onSquareChange}
+    >
+      {value}
+    </button>
+  );
+};
 
 function Board() {
-  
+
+    const [square, setSquare]= useState([Array(9).fill(null)]); 
+    
+    const handleClick =()=>{
+      console.log("clicked")
+    }
 
   return (
     <>
-   
-       <div>
-          <Square value="1" />
-          <Square value="2" />
-          <Square value="3" />
-       </div>
-        <div>
-          <Square value="4" />
-          <Square value="5" />
-          <Square value="6" />
-       </div>
-        <div>
-          <Square value="7" />
-          <Square value="8" />
-          <Square value="9" />
-       </div>
-        
+      <div className="flex">
+        <Square value={square[1]} onSquareChange={handleClick} />
+        <Square value={square[2]} />
+        <Square value={square[3]} />
+      </div>
+      <div className="flex">
+        <Square value={square[4]}/>
+        <Square value={square[5]}/>
+        <Square value={square[6]}/>
+      </div>
+      <div className="flex">
+        <Square value={square[7]}/>
+        <Square value={square[8]}/>
+        <Square value={square[9]}/>
+      </div>
     </>
-  )
+  );
 }
 
-export default Board
+export default Board;
